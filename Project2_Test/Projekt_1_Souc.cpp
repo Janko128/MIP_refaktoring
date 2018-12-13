@@ -85,22 +85,6 @@
 		}
 	}
 
-	/*
-	void pridaj_osobu(osoba **r_osoby, int *pocet_zaznamy) {
-		printf("%d", *pocet_zaznamy);
-		*r_osoby = (osoba*)realloc(*r_osoby, (*pocet_zaznamy+1)*sizeof(*r_osoby[0]));
-		//for (int i = 1; i <= 7; i++) {
-		//	if (i == 1) {
-		char str[50];
-		gets_s(str);
-		*r_osoby[*pocet_zaznamy + 1]->meno = *str;
-		*pocet_zaznamy++;
-			//}
-
-		//}
-	}
-	*/
-
 	void napln_osoby(osoba **r_osoby, const char *nazov_suboru, int*pocet_zaznamy) {
 
 		FILE *subor;
