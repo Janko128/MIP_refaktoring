@@ -18,18 +18,18 @@
 	};
 
 	int zisti_pocet(const char *meno_suboru) {
-		int c, velkost = 0;
+		int pocet_riadkov, pocet_prvkov = 0;
 		FILE *subor;
 		subor = fopen(meno_suboru, "r");
 		if (subor) {
-			while ((c = getc(subor)) != EOF) {
-				if (c == '\n')
-					velkost++;
+			while ((pocet_riadkov = getc(subor)) != EOF) {
+				if (pocet_riadkov == '\n')
+					pocet_prvkov++;
 			}
 		}
-		velkost /= 7;
+		pocet_prvkov /= 7;
 		fclose(subor);
-		return velkost;
+		return pocet_prvkov;
 	}
 
 	int je_palindrom(char* vstup_spz) {
@@ -91,17 +91,17 @@
 		osoba *p_osoby, *osoby;
 		osoby = (osoba*)calloc(zisti_pocet(nazov_suboru), sizeof(osoba));
 		int poradie_polozka = 1;
-		char *string, *p_string, c;
+		char *string, *temp_string, aktualny_znak;
 		subor = fopen(nazov_suboru, "r");
 		string = (char*)calloc(50, sizeof(char));
-		p_string = string;
+		temp_string = string;
 		p_osoby = osoby;
 		*pocet_zaznamy = 0;
 
 		if (subor) {
-			while ((c = getc(subor)) != EOF) {
-				*p_string = c;
-				if (c == '\n') {
+			while ((aktualny_znak = getc(subor)) != EOF) {
+				*temp_string = aktualny_znak;
+				if (aktualny_znak == '\n') {
 					printf("%s %d\n", string, poradie_polozka);
 					if (poradie_polozka == 1) { //Priradi do polozky 1, Meno priezvisko
 						memcpy((char*)p_osoby->meno, (const char*)string, 50);
@@ -134,7 +134,7 @@
 					}
 					if (poradie_polozka < 8) { 
 						string = (char*)calloc(50, sizeof(char));
-						p_string = string;
+						temp_string = string;
 					}
 					poradie_polozka++;
 					if (poradie_polozka > 8) {
@@ -143,7 +143,7 @@
 					}
 				}
 				else {
-					p_string++;
+					temp_string++;
 				}
 			}
 			fclose(subor);
