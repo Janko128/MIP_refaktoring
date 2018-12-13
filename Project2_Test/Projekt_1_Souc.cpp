@@ -60,11 +60,11 @@
 		}
 	}
 
-	void mesacna_odmena(int kolko, osoba *ktore_pole) {
+	void mesacna_odmena(int pocet_prvkov, osoba *ktore_pole) {
 		int datum;
 		double pokuta = 0;
 		scanf("%d", &datum);
-		for (int i = 1; i <= kolko; i++) {
+		for (int i = 1; i <= pocet_prvkov; i++) {
 			if (datum / 100 == ktore_pole->datum_priestupku / 100) {
 				if (ktore_pole->typ_priestupku) {
 					pokuta += ((ktore_pole->vyska_pokuty)*0.052);
@@ -77,9 +77,8 @@
 		printf("Pokuta za aktualny mesiac: %.2lf\n", pokuta);
 	}
 
-	void vypis_pole(int kolko, osoba *ktore_pole) {
-		for (int i = 1; i <= kolko; i++) {
-			//printf("%d", i);
+	void vypis_pole(int pocet_prvkov, osoba *ktore_pole) {
+		for (int i = 1; i <= pocet_prvkov; i++) {
 			printf("\nMeno priezvisko: %sPohlavie: %c\nRok narodenia: %d\nSPZ: %s\nTyp priestupku: %d\nVyska pokuty: %d\nDatum priestupku: %d\n", ktore_pole->meno, ktore_pole->pohlavie, ktore_pole->rok_narodenia, ktore_pole->spz, ktore_pole->typ_priestupku, ktore_pole->vyska_pokuty, ktore_pole->datum_priestupku);
 			ktore_pole++;
 		}
@@ -102,32 +101,32 @@
 			while ((aktualny_znak = getc(subor)) != EOF) {
 				*temp_string = aktualny_znak;
 				if (aktualny_znak == '\n') {
-					printf("%s %d\n", string, poradie_polozka);
-					if (poradie_polozka == 1) { //Priradi do polozky 1, Meno priezvisko
+					//printf("%s %d\n", string, poradie_polozka);
+					if (poradie_polozka == 1) { 
 						memcpy((char*)p_osoby->meno, (const char*)string, 50);
 						free(string);
 					}
-					if (poradie_polozka == 2) { //Priradi do polozky 2, pohlavie
+					if (poradie_polozka == 2) { 
 						p_osoby->pohlavie = *string;
 						free(string);
 					}
-					if (poradie_polozka == 3) { //Priradi do polozky 3, rok_narodenia
+					if (poradie_polozka == 3) { 
 						p_osoby->rok_narodenia = atoi(string);
 						free(string);
 					}
-					if (poradie_polozka == 4) { //Priradi do polozky 4, SPZ
+					if (poradie_polozka == 4) { 
 						memcpy((char*)p_osoby->spz, (const char*)string, 7);
 						free(string);
 					}
-					if (poradie_polozka == 5) { //Priradi do polozky 5, typ_priestupku
+					if (poradie_polozka == 5) { 
 						p_osoby->typ_priestupku = atoi(string);
 						free(string);
 					}
-					if (poradie_polozka == 6) { //Priradi do polozky 6, vyksa _pokuty
+					if (poradie_polozka == 6) { 
 						p_osoby->vyska_pokuty = atoi(string);
 						free(string);
 					}
-					if (poradie_polozka == 7) { //Priradi do polozky 7, datum_priestupku
+					if (poradie_polozka == 7) { 
 						p_osoby->datum_priestupku = atoi(string);
 						(*pocet_zaznamy)++;
 						free(string);
@@ -176,10 +175,6 @@
 				if (osoby != NULL)
 					vypis_palindrom_spz(pocet_zaznamy, osoby);
 			}
-			else if (ktory_prikaz == 'a') {
-				//pridaj_osobu(&osoby, &pocet_zaznamy);
-			}
-		}
-	
+		}	
 		return 0;
 		}
